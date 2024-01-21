@@ -1,9 +1,12 @@
 import React from 'react'
+import SideBar from "./components/SideBar.jsx";
 
 function App() {
   return (
     <>
-      <h1 className='text-center font-semibold text-3xl'>Coming Soon...</h1>
+      <main>
+        <SideBar />
+      </main>
     </>
   )
 }
