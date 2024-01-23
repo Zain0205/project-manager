@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-export default function SideBar() {
+export default function SideBar({onAdd}) {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const showMenu = !menuIsOpen ? "-translate-x-96 md:translate-x-0" : "translate-x-0";
@@ -28,7 +28,7 @@ export default function SideBar() {
         <nav className={`bg-zinc-800 absolute bottom-0 left-0 top-0 w-80 flex flex-col gap-y-5 transition-all duration-300 ease-in-out h-screen ${showMenu}`}>
           <div className="mt-3.5 ml-5">
             <h1 className="text-xl font-semibold mb-5 mt-1">Your Project</h1>
-            <Button>+ Add New Project</Button>
+            <Button onClick={onAdd}>+ Add New Project</Button>
           </div>
           <ul className="">
             <li className="px-5 py-2 text-md hover:bg-zinc-600">Task 1</li>
