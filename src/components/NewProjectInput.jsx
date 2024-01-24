@@ -1,7 +1,7 @@
 import Input from "./Input.jsx";
 import {useRef} from "react";
 
-export default function NewProjectInput() {
+export default function NewProjectInput({addProject}) {
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -11,7 +11,15 @@ export default function NewProjectInput() {
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
 
-    // Validation
+    if (enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredDueDate.trim() === ''){
+
+    }
+
+    addProject({
+      title: enteredTitle,
+      description: enteredDescription,
+      dueDate: enteredDueDate,
+    })
   }
 
   return (
@@ -19,12 +27,12 @@ export default function NewProjectInput() {
       <div className="">
         <div className="text-right mb-2">
           <button className="bg-slate-400 px-3 py-1 rounded-md">Cancel</button>
-          <button className="bg-stone-900 px-3 py-1 rounded-md text-white ml-2">Save</button>
+          <button onClick={handleSaveClick} className="bg-stone-900 px-3 py-1 rounded-md text-white ml-2">Save</button>
         </div>
         <div>
-          <Input ref={title} label="Title" />
+          <Input type="text" ref={title} label="Title" />
           <Input ref={description} label="Description" textArea />
-          <Input ref={dueDate} label="Date" />
+          <Input type="date" ref={dueDate} label="Date" />
         </div>
       </div>
     </>

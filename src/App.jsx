@@ -11,7 +11,22 @@ function App() {
     task: []
   })
 
-  const handleAddPoject = () => {
+  const handleAddNewProjectClick = (newProject) => {
+    setProjectManager((prev) => {
+      const newProjectData = {
+        ...newProject,
+        id: Math.random()
+      }
+
+      return {
+        ...prev,
+        selectedTab: true,
+        projects: [...prev.projects, newProjectData]
+      }
+    })
+  }
+
+  const handleNewPoject = () => {
     setProjectManager((prev) => {
       return {
         ...prev,
@@ -19,12 +34,13 @@ function App() {
       }
     })
   }
-  
+
   return (
     <>
-      <SideBar onAdd={handleAddPoject} />
+      <SideBar projectList={projectManager.projects} onAdd={handleNewPoject}/>
       <main className="pt-24 px-5">
-        {projectManager.selectedTab ? <NotSelected onAdd={handleAddPoject} /> : <NewProjectInput />}
+        {projectManager.selectedTab ? <NotSelected onAdd={handleNewPoject}/> :
+          <NewProjectInput addProject={handleAddNewProjectClick}/>}
       </main>
     </>
   )
