@@ -35,12 +35,21 @@ function App() {
     })
   }
 
+  const handleCancelAddProject = () => {
+    setProjectManager(prev => {
+      return {
+        ...prev,
+        selectedTab: true
+      }
+    })
+  }
+
   return (
     <>
       <SideBar projectList={projectManager.projects} onAdd={handleNewPoject}/>
       <main className="pt-24 px-5">
         {projectManager.selectedTab ? <NotSelected onAdd={handleNewPoject}/> :
-          <NewProjectInput addProject={handleAddNewProjectClick}/>}
+          <NewProjectInput cancelProject={handleCancelAddProject} addProject={handleAddNewProjectClick}/>}
       </main>
     </>
   )
