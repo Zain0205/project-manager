@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-export default function SideBar({onAdd, projectList}) {
+export default function SideBar({ onAdd, projectList, onSelect }) {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
   const showMenu = !menuIsOpen ? "-translate-x-96 md:translate-x-0" : "translate-x-0";
@@ -31,7 +31,11 @@ export default function SideBar({onAdd, projectList}) {
             <Button onClick={onAdd}>+ Add New Project</Button>
           </div>
           <ul className="">
-            {projectList.map(project =>  <li className="px-5 py-2 text-md hover:bg-zinc-600">{project.title}</li>)}
+            {projectList.map((project) => (
+              <li key={project.id} className="px-5 py-2 text-md hover:bg-zinc-600">
+                <button className="px-5 py-1" onClick={() => onSelect(project.id)}>{project.title}</button>
+              </li>
+            ))}
           </ul>
         </nav>
       </aside>
