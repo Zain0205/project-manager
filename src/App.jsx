@@ -6,10 +6,20 @@ import SelectedProject from "./components/SelectedProject.jsx";
 
 function App() {
   const [projectManager, setProjectManager] = useState({
-    selectedTab: null,
+    selectedTab: undefined,
     projects: [],
     task: [],
   });
+
+  const handleDellete = () => {
+    setProjectManager((prev) => {
+      return {
+        ...prev,
+        selectedTab: null,
+        projects: prev.projects.filter((project) => project.id !== prev.selectedTab),
+      };
+    });
+  };
 
   const handleSelectProject = (id) => {
     setProjectManager((prev) => {
@@ -29,7 +39,7 @@ function App() {
 
       return {
         ...prev,
-        selectedTab: null,
+        selectedTab: undefined,
         projects: [...prev.projects, newProjectData],
       };
     });
@@ -39,7 +49,7 @@ function App() {
     setProjectManager((prev) => {
       return {
         ...prev,
-        selectedTab: undefined,
+        selectedTab: null,
       };
     });
   };
@@ -48,19 +58,19 @@ function App() {
     setProjectManager((prev) => {
       return {
         ...prev,
-        selectedTab: null,
+        selectedTab: undefined,
       };
     });
   };
 
   const selectProject = projectManager.projects.find((project) => project.id === projectManager.selectedTab);
 
-  let content = <SelectedProject project={selectProject} />;
+  let content = <SelectedProject onDellete={handleDellete} project={selectProject} />;
 
-  if (projectManager.selectedTab === null){
-    content = <NotSelected onAdd={handleNewPoject} />
-  } else if (projectManager.selectedTab === undefined){
-    content = <NewProjectInput cancelProject={handleCancelAddProject} addProject={handleAddNewProjectClick} />
+  if (projectManager.selectedTab === undefined) {
+    content = <NotSelected onAdd={handleNewPoject} />;
+  } else if (projectManager.selectedTab === null) {
+    content = <NewProjectInput cancelProject={handleCancelAddProject} addProject={handleAddNewProjectClick} />;
   }
 
   // projectManager.selectedTab ? (content = <NotSelected onAdd={handleNewPoject} />) : (content = <NewProjectInput cancelProject={handleCancelAddProject} addProject={handleAddNewProjectClick} />);

@@ -33,7 +33,7 @@ export default function SideBar({ onAdd, projectList, onSelect }) {
           <ul className="">
             {projectList.map((project) => (
               <li key={project.id} className="px-5 py-2 text-md hover:bg-zinc-600">
-                <button className="px-5 py-1" onClick={() => onSelect(project.id)}>{project.title}</button>
+                <button className="px-5 py-1 w-full text-left" onClick={() => onSelect(project.id)}>{project.title}</button>
               </li>
             ))}
           </ul>
