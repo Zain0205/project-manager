@@ -78,7 +78,7 @@ function App() {
   return (
     <>
       <SideBar onSelect={handleSelectProject} projectList={projectManager.projects} onAdd={handleNewPoject} />
-      <main className="pt-24 px-5">{content}</main>
+      <main className="pt-24 px-5 md:pl-[21rem]">{content}</main>
     </>
   );
 }

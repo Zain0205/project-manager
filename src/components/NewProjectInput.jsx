@@ -35,7 +35,7 @@ export default function NewProjectInput({addProject, cancelProject}) {
           <button className="mt-3 bg-stone-800 px-2 py-1 rounded-md text-slate-100">Close</button>
         </form>
       </Modal>
-      <div className="">
+      <div className="lg:w-[70%] lg:mx-auto">
         <div className="text-right mb-2">
           <button onClick={cancelProject} className="bg-slate-400 px-3 py-1 rounded-md">Cancel</button>
           <button onClick={handleSaveClick} className="bg-stone-900 px-3 py-1 rounded-md text-white ml-2">Save</button>
