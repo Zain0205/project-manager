@@ -13,7 +13,7 @@ const Modal = forwardRef(function Modal({children}, ref){
 
   return (
     <>
-      <dialog className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md w-full" ref={dialog}>
+      <dialog className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md w-full md:w-1/2" ref={dialog}>
         {children}
       </dialog>
     </>
