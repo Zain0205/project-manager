@@ -1,30 +1,33 @@
 import Input from "./Input.jsx";
-import {useRef} from "react";
+import { useRef, useContext } from "react";
 import Modal from "./Modal.jsx";
+import { StateContext } from "../store/context.jsx";
 
-export default function NewProjectInput({addProject, cancelProject}) {
+export default function NewProjectInput() {
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
 
-  const modal = useRef()
+  const modal = useRef();
+
+  const { addNewProject, cancelAdd } = useContext(StateContext);
 
   const handleSaveClick = () => {
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
 
-    if (enteredTitle.trim() === '' || enteredDescription.trim() === '' || enteredDueDate.trim() === ''){
+    if (enteredTitle.trim() === "" || enteredDescription.trim() === "" || enteredDueDate.trim() === "") {
       modal.current.open();
       return;
     }
 
-    addProject({
+    addNewProject({
       title: enteredTitle,
       description: enteredDescription,
       dueDate: enteredDueDate,
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -37,8 +40,12 @@ export default function NewProjectInput({addProject, cancelProject}) {
       </Modal>
       <div className="lg:w-[70%] lg:mx-auto">
         <div className="text-right mb-2">
-          <button onClick={cancelProject} className="bg-slate-400 px-3 py-1 rounded-md">Cancel</button>
-          <button onClick={handleSaveClick} className="bg-stone-900 px-3 py-1 rounded-md text-white ml-2">Save</button>
+          <button onClick={cancelAdd} className="bg-slate-400 px-3 py-1 rounded-md">
+            Cancel
+          </button>
+          <button onClick={handleSaveClick} className="bg-stone-900 px-3 py-1 rounded-md text-white ml-2">
+            Save
+          </button>
         </div>
         <div>
           <Input type="text" ref={title} label="Title" />
