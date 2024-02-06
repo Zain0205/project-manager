@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { StateContext } from "../store/context";
+import Task from "./Task";
 
 function SelectedProject() {
   const { projectThatSelected, delleteProject } = useContext(StateContext);
-  
+
   const formatedDate = new Date(projectThatSelected.dueDate).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "short",
@@ -22,7 +23,7 @@ function SelectedProject() {
         <p className="my-1 font-semibold text-base">{formatedDate}</p>
         <p className="text-lg font-semibold whitespace-pre-wrap">{projectThatSelected.description}</p>
       </header>
-      TASK
+      <Task />
     </div>
   );
 }
