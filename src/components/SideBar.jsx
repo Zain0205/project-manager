@@ -16,10 +16,7 @@ export default function SideBar() {
   return (
     <>
       <aside className="flex justify-between items-center bg-zinc-800 text-stone-300 py-3.5 px-5 border-b border-slate-600 fixed w-full md:w-80 md:py-0">
-        {/*<h1 className="font-bold text-xl">Project Manager</h1>*/}
-        {/*<Button onClick={handleMenuToggle}>Menu</Button>*/}
         <div className="uppercase flex items-center gap-x-3.5 md:hidden">
-          {/* <div className="h-12 w-12 bg-white rounded-full"></div> */}
           <h1 className="text-xl font-bold text-primary">Project Manager</h1>
         </div>
         <button className="md:hidden" onClick={handleMenuToggle}>
