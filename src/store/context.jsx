@@ -12,6 +12,8 @@ export const StateContext = createContext({
   addNewProject: () => {},
   cancelAdd: () => {},
   addNewProjectTab: () => {},
+  addTask: () => {},
+  delleteTask: () => {},
 });
 
 export default function ContextProvider({ children }) {
@@ -20,6 +22,28 @@ export default function ContextProvider({ children }) {
     projects: [],
     task: [],
   });
+
+  const handleDelleteTask = (selectedTask) => {
+    setProjectManager(prev => {
+
+      return {
+        ...prev,
+        task: prev.task.filter(tsk => tsk !== selectedTask)
+      }
+    })
+    
+  }
+
+  const handleAddTask = (newTask, setTaskInput) => {
+    setProjectManager(prev => {
+      return {
+        ...prev,
+        task: [...prev.task, newTask]
+      }
+    })
+
+    setTaskInput("")
+  };
 
   const handleDellete = () => {
     setProjectManager((prev) => {
@@ -94,6 +118,8 @@ export default function ContextProvider({ children }) {
     addNewProject: handleAddNewProjectClick,
     cancelAdd: handleCancelAddProject,
     addNewProjectTab: handleNewPoject,
+    addTask: handleAddTask,
+    delleteTask: handleDelleteTask,
   };
 
   return (
